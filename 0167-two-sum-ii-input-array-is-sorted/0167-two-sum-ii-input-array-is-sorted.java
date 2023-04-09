@@ -2,15 +2,27 @@
 class Solution {
     public int[] twoSum(int[] numbers, int target) {
         
-       Map <Integer,Integer> mp = new HashMap<>();
-
-       for(int i=0;i<numbers.length;i++){
-           int diff = target-numbers[i];
-           if(mp.containsKey(diff)){
-               return new int[]{mp.get(diff)+1,i+1};
-           }
-           mp.put(numbers[i],i);
-       }
-      return new int[]{};
+      int []indices=new int[2];
+        
+        if(numbers == null || numbers.length<0){
+            return indices;
+        }
+        int left=0;
+        int right=numbers.length-1;
+        
+        while(left<right){
+            int v = numbers[left]+numbers[right];
+            if(v==target){
+                return new int[]{left+1,right+1};
+            }
+            else if(v>target){
+                right--;
+            }
+            else{
+                left++;
+            }
+            
+        }
+        return new int[]{};
 }
 }
